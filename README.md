@@ -40,7 +40,7 @@ Similarly to `ngRepeat`, `ngGridsterRepeat` exposes all of the same `$index`, `$
 
 ### Parameters
 
-* ngGridsterWidget - (Expression) '_item_ in _collection_' expression where _item_ is an identifier and _collection_ is an Array on the scope.
+* ngGridsterRepeat - (Expression) '_item_ in _collection_' expression where _item_ is an identifier and _collection_ is an Array on the scope.
 
 * gridster-layout - (Expression) expression which evaluates to an array of serialized positions (from the Gridster serialize method) or a single object from that array (using something like `layout="grid[$index]"`).
 
@@ -49,7 +49,7 @@ Using the Gridster API directly
 
 It is possible to use the underlying Gridster API from a sub-directive.
 
-```javascript
+```js
 angular.module('directives', [])
   .directive('deletable', function() {
     return {
