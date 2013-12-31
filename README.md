@@ -7,41 +7,67 @@ Basic Usage
 -----------
 
 ```html
-<ul ng-gridster="{ draggable: { enabled: true } }">
-  <li ng-gridster-widget="widget in widgets" data-row="{{ widget.row }}" data-col="{{ widget.col }}" data-sizex="{{ widget.sizex }}" data-sizey="{{ widget.sizey }}">{{ widget.title }}</li>
+<ul ng-gridster="{ draggable: { enabled: true } }" gridster-changed="updated(serialized)">
+  <li ng-gridster-repeat="widget in widgets" layout="layout[$index]">{{ widget.title }}</li>
 </ul>
 ```
-
-You must use two directives to get this to work properly: `ngGridster` and `ngGridsterWidget`.
 
 ngGridster Directive
 --------------------
 
-Holds basic information about the Gridster object such as options and callbacks. Additionally, exposes a gridster function to gain access to the underlying Gridster object. This can be used in sub-directives to interact directly with the grid. Can be useful for removing widgets.
+Holds grid-wide options and callbacks and instantiates Gridster. Also, it exposes a gridster function which can be used to access the Gridster API directly. The can be especially useful when resizing or removing widgets from subdirectives.
 
 ### Parameters
 
+All parameters are optional.
+
 * ngGridster - (String) JSON encoded Gridster options object.
 
-* changed - (Expression) function which takes a state parameter to be called whenever the serialized version of the grid changes due to resize or drag.
+* gridster-changed - (Expression) function which takes a parameter named state which will be called whenever the serialized version of the grid changes due to resize or drag.
 
-ngGridsterWidget Directive
+* gridster-editable - (Expression) expression which evaluates to a boolean value indicating if the grid should be editable. If false, resizing and reordering is disabled.
+
+ngGridsterRepeat Directive
 --------------------------
 
 Stripped down version of `ngRepeat` which will repeat DOM elements once and then hand off all DOM manipulation off to Gridster. Additional items can be added via the Gridster API.
 
-Unlike `ngRepeat`, `ngGridsterWidget` will only iterate over Arrays.
+This directive will NOT watch the collection for changes after elements have been added. I ran into many problems with using ngRepeat and Gridster. Specifically around removing elements from the grid.
 
-Similarly to `ngRepeat`, `ngGridsterWidget` exposes all of the same `$index`, `$last`, etc scope variables.
+Unlike `ngRepeat`, `ngGridsterRepeat` will only iterate over Arrays.
+
+Similarly to `ngRepeat`, `ngGridsterRepeat` exposes all of the same `$index`, `$last`, etc scope variables.
 
 ### Parameters
 
 * ngGridsterWidget - (Expression) '_item_ in _collection_' expression where _item_ is an identifier and _collection_ is an Array on the scope.
 
+* gridster-layout - (Expression) expression which evaluates to an array of serialized positions (from the Gridster serialize method) or a single object from that array (using something like `layout="grid[$index]"`).
+
+Using the Gridster API directly
+-------------------------------
+
+It is possible to use the underlying Gridster API from a sub-directive.
+
+```javascript
+angular.module('directives', [])
+  .directive('deletable', function() {
+    return {
+      template: '<button>Delete Me</button>',
+      require: '^ngGridster',
+      link: function(scope, element, attr, controller) {
+        element.click(function() {
+          controller.gridster().remove_widget(element.parent());
+        });
+      }
+    };
+  });
+```
+
 Known Issues
 ------------
 
-* Seems to be broken on Angular 1.2+
+* Seems to be broken on Angular 1.2.2+.
 
 Contributing
 ------------
