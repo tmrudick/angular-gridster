@@ -1,0 +1,23 @@
+{
+  "name": "angular-gridster",
+  "version": "1.0.0",
+  "homepage": "https://github.com/tmrudick/angular-gridster",
+  "authors": [
+    "Tom Rudick <tmrudick@gmail.com>"
+  ],
+  "description": "Angular directives for Gridster.js",
+  "main": "lib/angular-gridster.js",
+  "keywords": [
+    "angular",
+    "gridster",
+    "directives"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
