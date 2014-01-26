@@ -12,7 +12,7 @@ Basic Usage
 </ul>
 ```
 
-ngGridster Directive
+gridster Directive
 --------------------
 
 Holds grid-wide options and callbacks and instantiates Gridster. Also, it exposes a gridster function which can be used to access the Gridster API directly. The can be especially useful when resizing or removing widgets from subdirectives.
@@ -21,26 +21,26 @@ Holds grid-wide options and callbacks and instantiates Gridster. Also, it expose
 
 All parameters are optional.
 
-* ngGridster - (String) JSON encoded Gridster options object.
+* gridster - (String) JSON encoded Gridster options object.
 
 * gridster-changed - (Expression) function which takes a parameter named state which will be called whenever the serialized version of the grid changes due to resize or drag.
 
 * gridster-editable - (Expression) expression which evaluates to a boolean value indicating if the grid should be editable. If false, resizing and reordering is disabled.
 
-ngGridsterRepeat Directive
+gridsterRepeat Directive
 --------------------------
 
 Stripped down version of `ngRepeat` which will repeat DOM elements once and then hand off all DOM manipulation off to Gridster. Additional items can be added via the Gridster API.
 
 This directive will NOT watch the collection for changes after elements have been added. I ran into many problems with using ngRepeat and Gridster. Specifically around removing elements from the grid.
 
-Unlike `ngRepeat`, `ngGridsterRepeat` will only iterate over Arrays.
+Unlike `ngRepeat`, `gridsterRepeat` will only iterate over Arrays.
 
-Similarly to `ngRepeat`, `ngGridsterRepeat` exposes all of the same `$index`, `$last`, etc scope variables.
+Similarly to `ngRepeat`, `gridsterRepeat` exposes all of the same `$index`, `$last`, etc scope variables.
 
 ### Parameters
 
-* ngGridsterRepeat - (Expression) '_item_ in _collection_' expression where _item_ is an identifier and _collection_ is an Array on the scope.
+* gridsterRepeat - (Expression) '_item_ in _collection_' expression where _item_ is an identifier and _collection_ is an Array on the scope.
 
 * gridster-layout - (Expression) expression which evaluates to an array of serialized positions (from the Gridster serialize method) or a single object from that array (using something like `layout="grid[$index]"`).
 
@@ -54,7 +54,7 @@ angular.module('directives', [])
   .directive('deletable', function() {
     return {
       template: '<button>Delete Me</button>',
-      require: '^ngGridster',
+      require: '^gridster',
       link: function(scope, element, attr, controller) {
         element.click(function() {
           controller.gridster().remove_widget(element.parent());
