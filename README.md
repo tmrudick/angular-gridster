@@ -23,7 +23,7 @@ All parameters are optional.
 
 * gridster - (String) JSON encoded Gridster options object.
 
-* gridster-changed - (Expression) function which takes a parameter named state which will be called whenever the serialized version of the grid changes due to resize or drag.
+* gridster-changed - (Expression) function which takes a parameter named serialized which will be called whenever the serialized version of the grid changes due to resize or drag.
 
 * gridster-editable - (Expression) expression which evaluates to a boolean value indicating if the grid should be editable. If false, resizing and reordering is disabled.
 

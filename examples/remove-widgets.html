@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <title>Angular-Gridster Examples :: Remove Widget</title>
+    <!-- Gridster base styles -->
+    <link rel="stylesheet" href="../components/gridster/dist/jquery.gridster.css">
+    <link rel="stylesheet" href="example.css">
+  </head>
+  <body ng-controller="GridsterCtrl">
+
+    <div class="gridster">
+      <!-- Define gridster directives -->
+      <ul gridster="gridsterOptions">
+        <li gridster-repeat="v in values" gridster-layout="values"><button removable>Remove Me</button></li>
+      </ul>
+    </div>
+
+    <!-- jQuery and Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+
+    <!-- Gridster -->
+    <script src="../components/gridster/dist/jquery.gridster.js"></script>
+
+    <!-- angular-gridster -->
+    <script src="../lib/angular-gridster.js"></script>
+
+    <!-- Create a basic angular app -->
+    <script>
+      angular.module('app', ['gridster'])
+        .controller('GridsterCtrl', function($scope) {
+          // Define gridster options
+          $scope.gridsterOptions = {
+            resize: {
+              enabled: true
+            }
+          };
+
+          // Mock widgets
+          $scope.values = [
+            { num: 1, row: 1, col: 1 },
+            { num: 2, row: 1, col: 2 },
+            { num: 3, row: 1, col: 3 }
+          ];
+        })
+        .directive('removable', function() {
+          return {
+            require: '^gridster',
+            link: function(scope, element, attr, controller) {
+              element.on('click', function() {
+                // Have to remove the gridster li element
+                controller.gridster().remove_widget(element.parents('li'));
+              });
+            }
+          };
+        });
+    </script>
+  </body>
+</html>
