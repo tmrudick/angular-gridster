@@ -3,6 +3,8 @@ angular-gridster
 
 An Angular directive for Gridster.
 
+**NOTE**: I don't have any more projects which depend on this directive and as such I don't spend much time maintaining it. Unless you absolutely need Gridster, you may want to look at the Manifest Web Designs [angular gridster](https://github.com/ManifestWebDesign/angular-gridster) module.
+
 Installation
 ------------
 
