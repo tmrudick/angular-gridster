@@ -7,8 +7,8 @@ Basic Usage
 -----------
 
 ```html
-<ul ng-gridster="{ draggable: { enabled: true } }" gridster-changed="updated(serialized)">
-  <li ng-gridster-repeat="widget in widgets" layout="layout[$index]">{{ widget.title }}</li>
+<ul gridster="{ draggable: { enabled: true } }" gridster-changed="updated(serialized)">
+  <li gridster-repeat="widget in widgets" layout="layout[$index]">{{ widget.title }}</li>
 </ul>
 ```
 
