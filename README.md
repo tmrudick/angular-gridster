@@ -3,6 +3,11 @@ angular-gridster
 
 An Angular directive for Gridster.
 
+Installation
+------------
+
+    bower install https://github.com/tmrudick/angular-gridster.git
+
 Basic Usage
 -----------
 
