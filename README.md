@@ -64,11 +64,6 @@ angular.module('directives', [])
   });
 ```
 
-Known Issues
-------------
-
-* Seems to be broken on Angular 1.2.2+.
-
 Contributing
 ------------
 
